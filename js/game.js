@@ -35,6 +35,22 @@ function getComputerChoice() {
 
     return choice.name;
 }
+function getPlayerChoice(){
+    let input;
+    let choiceObject;
+    while (true){
+        input = prompt("Please enter 'Rock, Paper or Scissors'");
+        input = input.toLowerCase();
+        choiceObject = validChoices.find((item) => item.name === input) // check it exists
+        if (choiceObject){
+            break;
+        }
+        alert(`Sorry, ${input} does not exist. Please enter 'Rock, Paper or Scissors'`);
+        
+    }
+
+    return choiceObject.name;
+}
 
 /**
  * Take two player inputs and calculate the winner
@@ -43,7 +59,7 @@ function getComputerChoice() {
  * @param {*} computerSelection 
  * @returns String representing winner / loser
  */
-function playGame(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
     let result;
     let playerObject = validChoices.find((choice) => choice.name === playerSelection);
     let computerObject = validChoices.find((choice) => choice.name === computerSelection);
