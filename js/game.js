@@ -87,7 +87,7 @@ function playRound(playerSelection, computerSelection) {
 function playGame(rounds = 5) {
   let playerCounter = 0;
   let computerCounter = 0;
-  let ties = 0;
+  let tieCounter = 0;
 
   for (i = 0; i < rounds; i++) {
     let playerChoice = getPlayerChoice();
@@ -95,16 +95,19 @@ function playGame(rounds = 5) {
 
     let result = playRound(playerChoice, computerChoice);
 
+    //Let the player know if they win/lose each round
+    console.log(result);
+
     if (result === playerWinResult) {
       playerCounter++;
     } else if (result === computerWinResult) {
       computerCounter++;
     } else if (result === tieResult) {
-      ties++;
+      tieCounter++;
     }
   }
   console.log("GAME OVER ---- Rounds = " + rounds);
   console.log("Player wins = " + playerCounter);
   console.log("Computer wins = " + computerCounter);
-  console.log("Ties = " + ties);
+  console.log("Ties = " + tieCounter);
 }
