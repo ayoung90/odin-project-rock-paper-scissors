@@ -59,8 +59,8 @@ function getPlayerChoice() {
 /**
  * Take two player inputs and calculate the winner
  * Assumption is that the inputs are validated elsewhere
- * @param {*} playerSelection
- * @param {*} computerSelection
+ * @param {String} playerSelection
+ * @param {String} computerSelection
  * @returns String representing winner / loser
  */
 function playRound(playerSelection, computerSelection) {
@@ -82,7 +82,7 @@ function playRound(playerSelection, computerSelection) {
 
 /**
  * Play a series of Rock, Paper, Scissors games and output the result
- * @param {*} rounds Number of rounds to play (Default = 5)
+ * @param {number} rounds Number of rounds to play (Default = 5)
  */
 function playGame(rounds = 5) {
   let playerCounter = 0;
@@ -106,6 +106,8 @@ function playGame(rounds = 5) {
       tieCounter++;
     }
   }
+  
+  // Final Output
   console.log("GAME OVER ---- Rounds = " + rounds);
   console.log("Player wins = " + playerCounter);
   console.log("Computer wins = " + computerCounter);
