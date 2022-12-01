@@ -24,6 +24,17 @@ const computerWinResult = "Sorry, you lose!! :(";
 const tieResult = "Looks like a tie!";
 
 /**
+ * Returns a formatted string of valid options for input
+ * e.g item1, item2, item3
+ * @returns 
+ */
+function getValidChoicesString(){
+  let choiceNames = validChoices.map((choice) => choice.name);
+
+  return choiceNames.join(", ");
+}
+
+/**
  * 'Randomly' select a choice for the computer player
  * @returns String of either 'rock', 'paper' or 'scissors'
  */
@@ -41,15 +52,17 @@ function getComputerChoice() {
 function getPlayerChoice() {
   let input;
   let choiceObject;
+  let validChoiceString = getValidChoicesString();
+
   while (true) {
-    input = prompt("Please enter 'Rock, Paper or Scissors'");
+    input = prompt("Please enter: "+validChoiceString);
     input = input.toLowerCase();
     choiceObject = validChoices.find((item) => item.name === input); // check it exists
     if (choiceObject) {
       break;
     }
     alert(
-      `Sorry, ${input} does not exist. Please enter 'Rock, Paper or Scissors'`
+      `Sorry, ${input} does not exist. Please enter: '${validChoiceString}'`
     );
   }
 
