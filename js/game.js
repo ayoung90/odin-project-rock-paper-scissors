@@ -26,9 +26,9 @@ const tieResult = "Looks like a tie!";
 /**
  * Returns a formatted string of valid options for input
  * e.g item1, item2, item3
- * @returns 
+ * @returns
  */
-function getValidChoicesString(){
+function getValidChoicesString() {
   let choiceNames = validChoices.map((choice) => choice.name);
 
   return choiceNames.join(", ");
@@ -55,7 +55,7 @@ function getPlayerChoice() {
   let validChoiceString = getValidChoicesString();
 
   while (true) {
-    input = prompt("Please enter: "+validChoiceString);
+    input = prompt("Please enter: " + validChoiceString);
     input = input.toLowerCase();
     choiceObject = validChoices.find((item) => item.name === input); // check it exists
     if (choiceObject) {
@@ -119,7 +119,7 @@ function playGame(rounds = 5) {
       tieCounter++;
     }
   }
-  
+
   // Final Output
   console.log("GAME OVER ---- Rounds = " + rounds);
   console.log("Player wins = " + playerCounter);
