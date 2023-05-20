@@ -10,20 +10,23 @@
   </head>
   <body>
     <h2 id="title">Rock, Paper, Scissors :)</h2>
-    <div id="playArea">
-      <div id="player" class="side">
+    <div id="playAreaContainer">
+      <div id="playerContainer" class="side">
         <h3>Player choices</h3>
-        <button>Rock</button>
-        <button>Paper</button>
-        <button>Scissors</button>
+        <button class="rock">Rock</button>
+        <button class="paper">Paper</button>
+        <button class="scissors">Scissors</button>
       </div>
-      <div id="computer" class="side">
+      <div id="computerContainer" class="side">
         <h3>Computer choices</h3>
-        <button>Rock</button>
-        <button>Paper</button>
-        <button>Scissors</button>
+        <button class="rock" disabled>Rock</button>
+        <button class="paper" disabled>Paper</button>
+        <button class="scissors" disabled>Scissors</button>
       </div>
     </div>
-    <div id="result"></div>
+    <div id="resultContainer">
+        <h3>Result</h3>
+        <p id="result"></p>
+    </div>
   </body>
 </html>

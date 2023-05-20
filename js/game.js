@@ -23,6 +23,9 @@ const playerWinResult = "You win!! :)";
 const computerWinResult = "Sorry, you lose!! :(";
 const tieResult = "Looks like a tie!";
 
+//References to styles
+const buttonSelectedStyle = "selected";
+
 /**
  * Returns a formatted string of valid options for input
  * e.g item1, item2, item3
@@ -93,24 +96,35 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+function styleButton(button) {
+  button.classList.add(buttonSelectedStyle);
+}
+
 /**
  * On click event handler to play game & display the result
  * @param {*} event
  */
 function playerClick(event) {
+  //reset state of buttons
+  playerButtons.forEach((button) => button.classList.remove(buttonSelectedStyle));
+  computerButtons.forEach((button) => button.classList.remove(buttonSelectedStyle));
+
   let playerChoice = event.target.innerText.toLowerCase();
   let computerChoice = getComputerChoice();
 
-  let result = playRound(playerChoice, computerChoice);
-
+  //play round and display result
   let resultDisplayContainer = document.querySelector("#result");
+  resultDisplayContainer.textContent = playRound(playerChoice, computerChoice);
 
-  resultDisplayContainer.textContent = result;
+  //colour the selected items for player and computer
+  styleButton(document.querySelector(`#playerContainer .${playerChoice}`));
+  styleButton(document.querySelector(`#computerContainer .${computerChoice}`));
 }
 
-//Add event handlers to all player buttons
-const playerButtons = document.querySelectorAll("#player button");
+const playerButtons = document.querySelectorAll("#playerContainer button");
+const computerButtons = document.querySelectorAll("#computerContainer button");
 
+//Add event handlers to all player buttons
 playerButtons.forEach((button) => {
   button.addEventListener("click", playerClick);
 });
