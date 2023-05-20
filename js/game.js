@@ -94,41 +94,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 /**
- * Play a series of Rock, Paper, Scissors games and output the result
- * @param {number} rounds Number of rounds to play (Default = 5)
- */
-function playGame(rounds = 5) {
-  let playerCounter = 0;
-  let computerCounter = 0;
-  let tieCounter = 0;
-
-  for (i = 0; i < rounds; i++) {
-    let playerChoice = getPlayerChoice();
-    let computerChoice = getComputerChoice();
-
-    let result = playRound(playerChoice, computerChoice);
-
-    //Let the player know if they win/lose each round
-    console.log(result);
-
-    if (result === playerWinResult) {
-      playerCounter++;
-    } else if (result === computerWinResult) {
-      computerCounter++;
-    } else if (result === tieResult) {
-      tieCounter++;
-    }
-  }
-
-  // Final Output
-  console.log("GAME OVER ---- Rounds = " + rounds);
-  console.log("Player wins = " + playerCounter);
-  console.log("Computer wins = " + computerCounter);
-  console.log("Ties = " + tieCounter);
-}
-
-/**
- * On click event handler to play game
+ * On click event handler to play game & display the result
  * @param {*} event
  */
 function playerClick(event) {
@@ -137,10 +103,12 @@ function playerClick(event) {
 
   let result = playRound(playerChoice, computerChoice);
 
-  console.log(result);
+  let resultDisplayContainer = document.querySelector("#result");
 
+  resultDisplayContainer.textContent = result;
 }
 
+//Add event handlers to all player buttons
 const playerButtons = document.querySelectorAll("#player button");
 
 playerButtons.forEach((button) => {

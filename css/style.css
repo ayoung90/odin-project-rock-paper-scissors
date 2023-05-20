@@ -1,0 +1,10 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
+#title{
+    text-align: center;
+}
+#playArea{
+    display: flex;
+    justify-content: space-around;   
+}
