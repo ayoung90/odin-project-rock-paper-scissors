@@ -126,3 +126,23 @@ function playGame(rounds = 5) {
   console.log("Computer wins = " + computerCounter);
   console.log("Ties = " + tieCounter);
 }
+
+/**
+ * On click event handler to play game
+ * @param {*} event
+ */
+function playerClick(event) {
+  let playerChoice = event.target.innerText.toLowerCase();
+  let computerChoice = getComputerChoice();
+
+  let result = playRound(playerChoice, computerChoice);
+
+  console.log(result);
+
+}
+
+const playerButtons = document.querySelectorAll("#player button");
+
+playerButtons.forEach((button) => {
+  button.addEventListener("click", playerClick);
+});
