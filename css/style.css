@@ -1,7 +1,7 @@
 body {
   font-family: "Courier New", Courier, monospace;
 }
-#title {
+.title {
   text-align: center;
 }
 #playAreaContainer {
@@ -14,3 +14,8 @@ body {
 .selected{
     background-color:lightblue;
 }
+
+#scoreContainer {
+    display: flex;
+    justify-content: space-around;
+  }

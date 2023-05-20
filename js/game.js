@@ -25,6 +25,11 @@ const tieResult = "Looks like a tie!";
 
 //References to styles
 const buttonSelectedStyle = "selected";
+const titleStyle = "title";
+
+let playerCounter = 0;
+let computerCounter = 0;
+let tieCounter = 0;
 
 /**
  * Returns a formatted string of valid options for input
@@ -96,6 +101,53 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+/**
+ *
+ * @param {String} result
+ */
+function keepScore(result) {
+  if (result === playerWinResult) {
+    playerCounter++;
+  } else if (result === computerWinResult) {
+    computerCounter++;
+  } else if (result === tieResult) {
+    tieCounter++;
+  }
+  document.querySelector("#playerWins .score").innerText = playerCounter;
+  document.querySelector("#ties .score").innerText = computerCounter;
+  document.querySelector("#computerwins .score").innerText = tieCounter;
+
+  if (playerCounter === 5) {
+    console.log("player wins!");
+    gameOver(
+      { name: "Player", score: playerCounter },
+      { name: "Computer", score: computerCounter }
+    );
+  } else if (computerCounter === 5) {
+    console.log("Computer wins!");
+    gameOver(
+      { name: "Computer", score: computerCounter },
+      { name: "Player", score: playerCounter }
+    );
+  }
+}
+
+function gameOver(winner, loser) {
+  //delete everything below body tag
+  let bodyTag = document.querySelector("body");
+  bodyTag.innerHTML = null;
+
+  let winTitle = document.createElement("h1");
+  let winScreen = document.createElement("h2");
+  winTitle.innerText = "Game over!";
+  winScreen.innerText = `Winner = ${winner.name} with a score of ${winner.score} | Loser = ${loser.name} with a score of ${loser.score}`;
+  winTitle.classList.add(titleStyle);
+  winScreen.classList.add(titleStyle);
+
+  bodyTag.appendChild(winTitle);
+  bodyTag.appendChild(winScreen);
+}
+
 function styleButton(button) {
   button.classList.add(buttonSelectedStyle);
 }
@@ -106,19 +158,26 @@ function styleButton(button) {
  */
 function playerClick(event) {
   //reset state of buttons
-  playerButtons.forEach((button) => button.classList.remove(buttonSelectedStyle));
-  computerButtons.forEach((button) => button.classList.remove(buttonSelectedStyle));
+  playerButtons.forEach((button) =>
+    button.classList.remove(buttonSelectedStyle)
+  );
+  computerButtons.forEach((button) =>
+    button.classList.remove(buttonSelectedStyle)
+  );
 
   let playerChoice = event.target.innerText.toLowerCase();
   let computerChoice = getComputerChoice();
 
   //play round and display result
+  let result = playRound(playerChoice, computerChoice);
   let resultDisplayContainer = document.querySelector("#result");
-  resultDisplayContainer.textContent = playRound(playerChoice, computerChoice);
+  resultDisplayContainer.textContent = result;
 
   //colour the selected items for player and computer
   styleButton(document.querySelector(`#playerContainer .${playerChoice}`));
   styleButton(document.querySelector(`#computerContainer .${computerChoice}`));
+
+  keepScore(result);
 }
 
 const playerButtons = document.querySelectorAll("#playerContainer button");
